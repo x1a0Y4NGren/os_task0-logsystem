@@ -48,3 +48,23 @@ make
 ./logsystem
 
 所有提交到仓库的代码，应保证在 Linux/WSL 环境下可编译运行。
+
+## 七、文件责任划分
+- 队长 / A：
+  - src/main.c
+  - README.md
+  - docs/team_plan.md
+  - 最终联调与合并
+- B：
+  - src/buffer.c
+  - include/buffer.h
+- C：
+  - src/log_ai.c
+  - src/output.c
+  - include/log_ai.h
+  - include/output.h
+- D：
+  - docs/experiment_plan.md
+  - docs/report_draft.md
+  - 实验数据整理与分析
+  - 第6组_任务0_实验报告.docx
