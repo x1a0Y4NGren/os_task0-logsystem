@@ -1,42 +1,42 @@
-# Smart Log Processing System Skeleton
+# 智能日志处理系统骨架
 
-This project is a small C language skeleton for an operating systems course assignment.
-The topic is the producer-consumer problem in a "smart log processing system" setting.
+这是一个面向操作系统课程作业的 C 语言项目骨架。
+实验主题是生产者-消费者问题，场景设定为“智能日志处理系统”。
 
-## Directory Structure
+## 目录结构
 
-- `src/main.c`: program entry, basic initialization, and placeholder threads
-- `src/buffer.c`: circular buffer with mutex and condition variables
-- `src/log_ai.c`: placeholder log classification and scoring module
-- `src/output.c`: placeholder file output module
-- `include/common.h`: shared constants and `LogEntry`
-- `include/buffer.h`: buffer declarations
-- `include/log_ai.h`: analysis declarations
-- `include/output.h`: output declarations
-- `Makefile`: build rules for Linux with `gcc -pthread`
+- `src/main.c`：程序入口，负责基本初始化与占位线程调用
+- `src/buffer.c`：循环缓冲区实现，使用互斥锁和条件变量完成同步
+- `src/log_ai.c`：日志分类与评分模块的占位实现
+- `src/output.c`：结果输出模块的占位实现
+- `include/common.h`：公共常量与 `LogEntry` 结构体定义
+- `include/buffer.h`：缓冲区模块头文件
+- `include/log_ai.h`：日志分析模块头文件
+- `include/output.h`：输出模块头文件
+- `Makefile`：Linux 下基于 `gcc -pthread` 的编译规则
 
-## Build
+## 编译方法
 
 ```bash
 make
 ```
 
-## Run
+## 运行方法
 
 ```bash
 ./logsystem
 ```
 
-## Current Status
+## 当前功能
 
-- Creates 2 producer threads and 1 consumer thread as placeholders
-- Prepares a circular buffer based on pthread mutexes and condition variables
-- Keeps analysis and output logic simple for later expansion
-- Creates `analysis.csv` and `alerts.log` during the demo run
+- 已创建 2 个生产者线程和 1 个消费者线程的基础骨架
+- 已准备基于 pthread 互斥锁和条件变量的循环缓冲区
+- 日志分析与输出模块目前保留为最小可扩展实现
+- 运行示例程序时会生成 `analysis.csv` 和 `alerts.log`
 
-## Suggested Next Steps
+## 后续可扩展内容
 
-1. Connect producer threads to `buffer_push`
-2. Connect consumer threads to `buffer_pop`
-3. Add real log generation rules
-4. Improve classification, scoring, and alert logic
+1. 让生产者线程调用 `buffer_push` 写入日志
+2. 让消费者线程调用 `buffer_pop` 读取日志
+3. 补充真实的日志生成逻辑
+4. 完善日志分类、评分与告警输出逻辑
