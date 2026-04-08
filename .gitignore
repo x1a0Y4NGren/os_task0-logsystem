@@ -1,0 +1,9 @@
+logsystem
+logsys
+a.out
+*.o
+*.exe
+analysis.csv
+alerts.log
+results/*
+!results/.gitkeep

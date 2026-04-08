@@ -1,8 +1,5 @@
-logsystem
-logsys
-a.out
-*.o
-analysis.csv
-alerts.log
-results/*
-!results/.gitkeep
+* text=auto
+*.c text eol=lf
+*.h text eol=lf
+*.md text eol=lf
+Makefile text eol=lf
