@@ -1,2 +1,8 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+logsystem
+logsys
+a.out
+*.o
+analysis.csv
+alerts.log
+results/*
+!results/.gitkeep
