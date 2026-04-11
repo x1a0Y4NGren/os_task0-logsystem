@@ -7,7 +7,8 @@
 
 /* A simple circular buffer for the producer-consumer model. */
 typedef struct {
-    LogEntry entries[LOG_BUFFER_CAPACITY];
+    LogEntry *entries;
+    int capacity;
     int head;
     int tail;
     int count;
@@ -16,7 +17,7 @@ typedef struct {
     pthread_cond_t not_full;
 } LogBuffer;
 
-void buffer_init(LogBuffer *buffer);
+int buffer_init(LogBuffer *buffer, int capacity);
 void buffer_destroy(LogBuffer *buffer);
 void buffer_push(LogBuffer *buffer, const LogEntry *entry);
 void buffer_pop(LogBuffer *buffer, LogEntry *entry);
