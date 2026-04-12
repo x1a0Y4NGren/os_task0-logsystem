@@ -120,7 +120,7 @@ void log_ai_analyze(LogEntry *entry)
      * 将消息转为小写副本后按优先级扫描规则表，首条命中即生效。
      * 无命中时保持原始占位值 UNCLASSIFIED，分值为 0。            */
     {
-        char lower_msg[LOG_MESSAGE_LEN];
+        char lower_msg[LOG_MESSAGE_SIZE];
         int  i, matched = 0;
 
         str_to_lower(lower_msg, entry->message, sizeof(lower_msg));
