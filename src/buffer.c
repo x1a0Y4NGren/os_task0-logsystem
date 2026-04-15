@@ -2,6 +2,7 @@
 
 #include "buffer.h"
 
+/* 初始化循环缓冲区，并分配实际存储空间。 */
 int buffer_init(LogBuffer *buffer, int capacity)
 {
     if (buffer == 0 || capacity <= 0) {
@@ -25,6 +26,7 @@ int buffer_init(LogBuffer *buffer, int capacity)
     return 0;
 }
 
+/* 销毁缓冲区，释放空间并回收同步资源。 */
 void buffer_destroy(LogBuffer *buffer)
 {
     if (buffer == 0) {
@@ -40,6 +42,10 @@ void buffer_destroy(LogBuffer *buffer)
     buffer->capacity = 0;
 }
 
+/* 生产者写入日志：
+ * 1. 先加锁，保证多个线程不会同时修改缓冲区状态；
+ * 2. 如果缓冲区已满，就等待 not_full 条件；
+ * 3. 放入一条日志后，通知消费者缓冲区现在非空。 */
 void buffer_push(LogBuffer *buffer, const LogEntry *entry)
 {
     if (buffer == 0 || entry == 0) {
@@ -60,6 +66,10 @@ void buffer_push(LogBuffer *buffer, const LogEntry *entry)
     pthread_mutex_unlock(&buffer->mutex);
 }
 
+/* 消费者读取日志：
+ * 1. 先加锁，保证读取 head/count 时是安全的；
+ * 2. 如果缓冲区为空，就等待 not_empty 条件；
+ * 3. 取走一条日志后，通知生产者缓冲区现在有空位。 */
 void buffer_pop(LogBuffer *buffer, LogEntry *entry)
 {
     if (buffer == 0 || entry == 0) {

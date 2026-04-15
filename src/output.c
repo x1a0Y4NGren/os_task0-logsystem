@@ -5,6 +5,9 @@
 static FILE *analysis_file = 0;
 static FILE *alert_file = 0;
 
+/* 初始化输出模块：
+ * 创建 analysis.csv 和 alerts.log，
+ * 并写入表头或初始化信息。 */
 void output_init(void)
 {
     analysis_file = fopen("analysis.csv", "w");
@@ -20,6 +23,7 @@ void output_init(void)
     }
 }
 
+/* 将每条日志的分析结果写入 analysis.csv。 */
 void output_write_analysis(const LogEntry *entry)
 {
     if (analysis_file == 0 || entry == 0) {
@@ -37,6 +41,7 @@ void output_write_analysis(const LogEntry *entry)
     fflush(analysis_file);
 }
 
+/* 将告警信息写入 alerts.log。 */
 void output_write_alert(const LogEntry *entry)
 {
     if (alert_file == 0 || entry == 0) {
@@ -52,6 +57,7 @@ void output_write_alert(const LogEntry *entry)
     fflush(alert_file);
 }
 
+/* 关闭输出文件，释放文件资源。 */
 void output_close(void)
 {
     if (analysis_file != 0) {
